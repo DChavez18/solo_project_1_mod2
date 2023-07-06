@@ -15,7 +15,7 @@ RSpec.describe "show team attributes" do
     it "displays all of the team attributes from the team table" do
       team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
 
-      visit "teams/:id"
+      visit "teams/#{team_1.id}"
 
       expect(page).to have_content(team_1.name)
       expect(page).to have_content(team_1.id)
