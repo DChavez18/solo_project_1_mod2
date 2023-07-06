@@ -249,23 +249,8 @@
           1,
           null
         ]
-      },
-      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/controllers/teams_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1688665252
+    "timestamp": 1688666487
   }
 }
