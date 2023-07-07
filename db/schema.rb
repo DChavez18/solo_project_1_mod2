@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_235717) do
     t.integer "jersey_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "teams_id"
-    t.index ["teams_id"], name: "index_players_on_teams_id"
+    t.bigint "team_id"
+    t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -33,5 +33,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_235717) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "players", "teams", column: "teams_id"
+  add_foreign_key "players", "teams"
 end

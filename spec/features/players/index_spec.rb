@@ -11,7 +11,12 @@ RSpec.describe "player index" do
 # (data from each column that is on the child table)
   describe "when I visit '/player'" do
     it "displays all players" do
-      qb = Player.create!(name: "Patrick Mahomes", team)
+      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+      player = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+
+      visit "/players"
+
+      expect(page).to have_content(player.name)
     end
   end
 end
