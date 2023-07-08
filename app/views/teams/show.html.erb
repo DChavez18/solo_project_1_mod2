@@ -1,7 +1,9 @@
 <a href="/teams">Team Index</a>
 
-<h2><%= @teams.name %></h2>
 <a href="/players">Player Index</a>
+
+<h2><%= @teams.name %></h2>
+<a href="<%= team_players_path(@teams) %>">Team Players</a>
 <p> PlayerCount: <%= @teams.players.count %></p>
 <p> ID: <%= @teams.id %></p>
 
