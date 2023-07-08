@@ -254,18 +254,20 @@
           null
         ]
       },
-      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/controllers/teams_controller.rb": {
+      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/models/player.rb": {
         "lines": [
           1,
           1,
-          0,
-          null,
-          null,
+          null
+        ]
+      },
+      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/controllers/players_controller.rb": {
+        "lines": [
           1,
-          2,
-          null,
-          null,
           1,
+          1,
+          null,
+          null,
           1,
           1,
           null,
@@ -278,14 +280,34 @@
           null
         ]
       },
-      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/models/player.rb": {
+      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/controllers/teams_controller.rb": {
         "lines": [
           1,
           1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/controllers/welcome_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
           null
         ]
       }
     },
-    "timestamp": 1688785174
+    "timestamp": 1688843904
   }
 }
