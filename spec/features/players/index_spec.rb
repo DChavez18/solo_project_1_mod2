@@ -64,5 +64,16 @@ RSpec.describe "player index" do
         expect(page).to have_link("Player Index", href: "/players")
       end
     end
+
+    describe "team_player page" do
+      it "has a link to the player index" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+        player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+
+        visit "/teams/#{team_1.id}/players"
+        expect(page).to have_link("Player Index", href: "/players")
+      end
+    end
+
   end
 end

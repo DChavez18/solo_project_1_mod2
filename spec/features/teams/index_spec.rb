@@ -42,4 +42,59 @@ RSpec.describe "team show page" do
       expect(page).to have_content(team_2.created_at)
     end
   end
+
+# [ ] done
+# User Story 9, Parent Index Link
+# As a visitor
+# When I visit any page on the site
+# Then I see a link at the top of the page that takes me to the Parent Index
+
+  describe "when i visit any page on the site" do
+    describe "welcome page" do
+      it "has a link to the team index" do
+
+        visit "/"
+        expect(page).to have_link("Team Index", href: "/teams")
+      end
+    end
+
+    describe "player page" do
+      it "has a link to the team index" do
+
+        visit "/players"
+        expect(page).to have_link("Team Index", href: "/teams")
+      end
+    end
+
+    describe "player show page" do
+      it "has a link to the team index" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+        player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+
+        visit "/players/#{player_1.id}"
+        expect(page).to have_link("Team Index", href: "/teams")
+      end
+    end
+
+    describe "team show page" do
+      it "has a link to the team index" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+
+        visit "/teams/#{team_1.id}"
+        expect(page).to have_link("Team Index", href: "/teams")
+      end
+    end
+
+    describe "team_player page" do
+      it "has a link to the team index" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+        player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+
+        visit "/teams/#{team_1.id}/players"
+        expect(page).to have_link("Team Index", href: "/teams")
+      end
+    end
+      
+
+  end
 end
