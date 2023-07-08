@@ -258,16 +258,16 @@
         "lines": [
           1,
           1,
+          0,
+          null,
+          null,
+          1,
           2,
           null,
           null,
           1,
-          0,
-          null,
-          null,
           1,
-          0,
-          0,
+          1,
           null,
           null
         ]
@@ -277,8 +277,15 @@
           1,
           null
         ]
+      },
+      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/models/player.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1688782715
+    "timestamp": 1688785174
   }
 }

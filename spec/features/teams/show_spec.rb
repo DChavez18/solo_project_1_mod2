@@ -58,3 +58,20 @@ RSpec.describe "show team attributes" do
 # When I visit a parent's show page
 # I see a count of the number of children associated with this parent
 # end
+
+  describe "when i visit team show page" do
+    it "shows a count of the number of players associated with the team" do
+      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+      team_2 = Team.create!(name: "Eagles", city: "Philadelphia", rank: 2, stadium: true)
+
+      player_1 = team_1.players.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15)
+      player_2 = team_1.players.create!(name: "Travis Kelce", drafted: true, jersey_num: 87)
+      player_3 = team_2.players.create!(name: "Jalen Hurts", drafted: true, jersey_num: 1)
+      player_4 = team_2.players.create!(name: "AJ Brown", drafted: true, jersey_num: 11)
+
+      visit "/teams/#{team_1.id}"
+
+      expect(page).to have_content(team_1.players.count)
+    end
+  end
+end
