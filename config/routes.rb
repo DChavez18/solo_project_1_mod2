@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/teams/:id", to: "teams#show"
   get "/teams/:id/players", to: "teams#show_players", as: "team_players"
   get "/teams/:id/edit", to: "teams#edit", as: "edit_team"
-  patch "/teams/:id", to: "teams#update"
+  patch "/teams/:id", to: "teams#update", as: "update_team"
   
   get "/players", to: "players#index"
   get "players/:id", to: "players#show"

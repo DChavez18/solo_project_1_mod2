@@ -1,0 +1,14 @@
+<form id="update_team" action="/teams/<%= @team.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Update Team:</p>
+  <label for="team_name">Team Name:</label>
+  <input type="text" id="team_name" name="team[name]" value="<%= @team.name %>"><br>
+  <label for="team_city">Team City:</label>
+  <input type="text" id="team_city" name="team[city]" value="<%= @team.city %>"><br>
+  <label for="team_rank">Team Rank:</label>
+  <input type="text" id="team_rank" name="team[rank]" value="<%= @team.rank %>"><br>
+  <label for="team_stadium">Stadium? Check if true:</label>
+  <input type="checkbox" id="team_stadium" name="team[stadium]" <%= @team.stadium ? "checked" : "" %>><br>
+  <input type="submit" id="team_submit" value="Update Team">
+</form>

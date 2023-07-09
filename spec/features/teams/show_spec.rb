@@ -107,11 +107,40 @@ RSpec.describe "show team attributes" do
   # where I see the parent's updated info
 
   describe "when i visit the team show page" do
-    it "displays a link to update team: 'Update Team'" do
-      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+    describe "update team button" do
+      it "displays a link to update team: 'Update Team'" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+        
+        visit "/teams/#{team_1.id}"
+        expect(page).to have_link("Update Team", href: "/teams/#{team_1.id}/edit")
+      end
+      
+      it "when I click the 'Update Team' button I go to a new page to edit attributes" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+        
+        visit "teams/#{team_1.id}/edit"
+        expect(page).to have_selector("form#update_team")
+      end
+      
+      it "when changes are made and submit is clicked user is redirected to team_show page to view updated changes" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
 
-      visit "/teams/#{team_1.id}"
-      expect(page).to have_link("Update Team", href: "/teams/#{team_1.id}/edit")
+        visit "teams/#{team_1.id}/edit"
+
+        fill_in "team_name", with: "Mahomies"
+        fill_in "team_city", with: "KC"
+        fill_in "team_rank", with: 3
+        check "team_stadium"
+
+        click_button "team_submit"
+
+
+        expect(page).to have_current_path("/teams/#{team_1.id}")
+        expect(page).to have_content("Mahomies")
+        expect(page).to have_content("KC")
+        expect(page).to have_content(3)
+      end
+      
     end
   end
 end

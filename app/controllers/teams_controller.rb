@@ -27,4 +27,20 @@ class TeamsController < ApplicationController
 
     redirect_to '/teams'
   end
+
+  def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    team = Team.find(params[:id])
+    team.update({
+      name: params[:team][:name],
+      city: params[:team][:city],
+      rank: params[:team][:rank],
+      stadium: params[:team][:stadium]
+    })
+
+    redirect_to "/teams/#{team.id}"
+  end
 end
