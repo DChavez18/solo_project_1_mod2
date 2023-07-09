@@ -2,10 +2,8 @@ require "rails_helper"
 
 RSpec.describe "show team attributes" do
   
-#   [ ] done
-
+#[ ] done
 # User Story 2, Parent Show 
-
 # As a visitor
 # When I visit '/parents/:id'
 # Then I see the parent with that id including the parent's attributes
@@ -25,7 +23,7 @@ RSpec.describe "show team attributes" do
     end
   end
 
-#   [ ] done
+#[ ] done
 # User Story 5, Parent Children Index 
 # As a visitor
 # When I visit '/parents/:parent_id/child_table_name'
@@ -52,7 +50,7 @@ RSpec.describe "show team attributes" do
     end
   end
 
-#   [ ] done
+#[ ] done
 # User Story 7, Parent Child Count
 # As a visitor
 # When I visit a parent's show page
@@ -91,20 +89,20 @@ RSpec.describe "show team attributes" do
     end
   end
 
-  #[ ] done
-  # User Story 12, Parent Update 
-  # As a visitor
-  # When I visit a parent show page
-  # Then I see a link to update the parent "Update Parent"
-  # When I click the link "Update Parent"
-  # Then I am taken to '/parents/:id/edit' 
-  # where I  see a form to edit the parent's attributes:
-  # When I fill out the form with updated information
-  # And I click the button to submit the form
-  # Then a `PATCH` request is sent to '/parents/:id',
-  # the parent's info is updated,
-  # and I am redirected to the Parent's Show page,
-  # where I see the parent's updated info
+#[ ] done
+# User Story 12, Parent Update 
+# As a visitor
+# When I visit a parent show page
+# Then I see a link to update the parent "Update Parent"
+# When I click the link "Update Parent"
+# Then I am taken to '/parents/:id/edit' 
+# where I see a form to edit the parent's attributes:
+# When I fill out the form with updated information
+# And I click the button to submit the form
+# Then a `PATCH` request is sent to '/parents/:id',
+# the parent's info is updated,
+# and I am redirected to the Parent's Show page,
+# where I see the parent's updated info
 
   describe "when i visit the team show page" do
     describe "update team button" do
@@ -140,8 +138,35 @@ RSpec.describe "show team attributes" do
         expect(page).to have_content("KC")
         expect(page).to have_content(3)
       end
-      
     end
   end
+
+  #[ ] done
+  # User Story 13, Parent Child Creation 
+  # As a visitor
+  # When I visit a Parent Children Index page
+  # Then I see a link to add a new adoptable child for that parent "Create Child"
+  # When I click the link
+  # I am taken to '/parents/:parent_id/child_table_name/new' 
+  # where I see a form to add a new adoptable child
+  # When I fill in the form with the child's attributes:
+  # And I click the button "Create Child"
+  # Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
+  # a new child object/row is created for that parent,
+  # and I am redirected to the Parent Childs Index page 
+  # where I can see the new child listed
+
+  describe "when i visit the team player index" do
+    describe "create player button" do
+      it "displays a link that adds a new player to that team"do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+
+        visit "/teams/#{team_1.id}/players"
+        expect(page).to have_link("Create Player", href: "/teams/#{team_1.id}/players")
+      end
+    end
+  end
+
+
 end
   
