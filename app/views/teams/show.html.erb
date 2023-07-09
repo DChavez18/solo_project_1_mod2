@@ -3,6 +3,7 @@
 <a href="/players">Player Index</a>
 
 <h2><%= @teams.name %></h2>
+<a href="<%= edit_team_path(@teams) %>">Update Team</a>
 <a href="<%= team_players_path(@teams) %>">Team Players</a>
 <p> PlayerCount: <%= @teams.players.count %></p>
 <p> ID: <%= @teams.id %></p>
@@ -11,3 +12,5 @@
 <p> City: <%= @teams.city %></p>
 <p> Rank: <%= @teams.rank %></p>
 <p> Stadium: <%= @teams.stadium %></p>
+
+
