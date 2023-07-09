@@ -14,4 +14,17 @@ class TeamsController < ApplicationController
 
   def new
   end
+
+  def create
+    team = Team.new({
+      name: params[:team][:name],
+      city: params[:team][:city],
+      rank: params[:team][:rank],
+      stadium: params[:team][:stadium]
+    })
+
+    team.save
+
+    redirect_to '/teams'
+  end
 end

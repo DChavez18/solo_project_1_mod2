@@ -1,6 +1,13 @@
 <form id= "new_team" action="/teams" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <p>Create Team:</p>
-  <input type='text' name='team[name]'/><br/>
-  <input type='submit'/>
+  <label for="team_name">Team Name:</label>
+  <input type='text' id="team_name" name='team[name]'/><br/>
+  <label for="team_city">Team City:</label>
+  <input type='text' id="team_city" name='team[city]'/><br/>
+  <label for="team_rank">Team Rank:</label>
+  <input type='text' id="team_rank" name='team[rank]'/><br/>
+  <label for="team_stadium">Stadium? check if true:</label>
+  <input type='checkbox' id="team_stadium" name='team[stadium]'/><br/>
+  <input type='submit' id="team_submit"/>
 </form>

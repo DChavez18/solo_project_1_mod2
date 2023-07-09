@@ -126,6 +126,39 @@ RSpec.describe "team index page" do
         visit "/teams/new"
         expect(page).to have_selector("form#new_team")
       end
+
+      it "creates a new team with attributes when the form is submitted" do
+        visit "teams/new"
+
+        fill_in "team_name", with: "Broncos"
+        fill_in "team_city", with: "Denver"
+        fill_in "team_rank", with: 30
+        check "team_stadium"
+
+        click_button "team_submit"
+
+        expect(page).to have_current_path("/teams")
+      end
+
+      it "creates and saves the new team and redirects you to the team index page" do
+        visit "/teams/new"
+
+        fill_in "team_name", with: "Broncos"
+        fill_in "team_city", with: "Denver"
+        fill_in "team_rank", with: 30
+        check "team_stadium"
+      
+        click_button "team_submit"
+      
+        expect(page).to have_current_path("/teams")
+      
+        new_team = Team.find_by(name: "Broncos")
+        expect(new_team).to_not be_nil
+      
+        visit "/teams"
+      
+        expect(page).to have_link("Broncos", href: "/teams/#{new_team.id}")
+      end
     end
   end
 end
