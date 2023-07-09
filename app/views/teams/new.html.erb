@@ -1,0 +1,6 @@
+<form id= "new_team" action="/teams" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Create Team:</p>
+  <input type='text' name='team[name]'/><br/>
+  <input type='submit'/>
+</form>

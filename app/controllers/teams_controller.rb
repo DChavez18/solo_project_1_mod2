@@ -11,4 +11,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @players = @team.players
   end
+
+  def new
+  end
 end

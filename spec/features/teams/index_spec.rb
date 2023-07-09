@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "team show page" do
+RSpec.describe "team index page" do
 
   # [ ] done
   # # User Story 1, Parent Index 
@@ -119,6 +119,12 @@ RSpec.describe "team show page" do
 
         visit "/teams"
         expect(page).to have_link("New Team", href: "/teams/new")
+      end
+
+      it "takes me to a new page to fill out a from for a New team" do
+
+        visit "/teams/new"
+        expect(page).to have_selector("form#new_team")
       end
     end
   end

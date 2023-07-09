@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
 
   get "/teams", to: "teams#index"
+  get "/teams/new", to: "teams#new"
   get "/teams/:id", to: "teams#show"
   get "/teams/:id/players", to: "teams#show_players", as: "team_players"
   
