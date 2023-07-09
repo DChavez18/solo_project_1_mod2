@@ -90,5 +90,29 @@ RSpec.describe "show team attributes" do
       expect(page).to have_link("Team Player", href: team_players_path(team_1))
     end
   end
-  
+
+  #[ ] done
+  # User Story 12, Parent Update 
+  # As a visitor
+  # When I visit a parent show page
+  # Then I see a link to update the parent "Update Parent"
+  # When I click the link "Update Parent"
+  # Then I am taken to '/parents/:id/edit' 
+  # where I  see a form to edit the parent's attributes:
+  # When I fill out the form with updated information
+  # And I click the button to submit the form
+  # Then a `PATCH` request is sent to '/parents/:id',
+  # the parent's info is updated,
+  # and I am redirected to the Parent's Show page,
+  # where I see the parent's updated info
+
+  describe "when i visit the team show page" do
+    it "displays a link to update team: 'Update Team'" do
+      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+
+      visit "/teams/#{team_1.id}"
+      expect(page).to have_link("Update Team", href: "/teams/#{team_1.id}/edit")
+    end
+  end
 end
+  
