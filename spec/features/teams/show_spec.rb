@@ -162,7 +162,7 @@ RSpec.describe "show team attributes" do
         team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
       
         visit "/teams/#{team_1.id}/players"
-        expect(page).to have_link("Create Player", href: "/teams/#{team_1.id}/players")
+        expect(page).to have_link("Create Player", href: "/teams/#{team_1.id}/players/new")
       end
     
       it "when the link is clicked, you a redirected to a form page" do

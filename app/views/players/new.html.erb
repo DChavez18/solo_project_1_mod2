@@ -1,0 +1,11 @@
+<form id= "new_player" action="/teams/:id/players/new" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Create Player:</p>
+  <label for="player_name">Player Name:</label>
+  <input type='text' id="player_name" name='player[name]'/><br/>
+  <label for="player_drafted">Drafted:</label>
+  <input type='checkbox' id="player_drafted" name='player[drafted]'/><br/>
+  <label for="player_jersey">Jersey Num:</label>
+  <input type='text' id="player_jersey" name='player[jersey]'/><br/>
+  <input type='submit' id="player_submit"/>
+</form>
