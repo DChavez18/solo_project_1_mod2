@@ -232,6 +232,8 @@
           1,
           1,
           1,
+          1,
+          1,
           null,
           1,
           1,
@@ -320,8 +322,21 @@
           1,
           null
         ]
+      },
+      "/Users/derekchavez/2mod/solo_project_1/solo_project_1/app/controllers/players_controller.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1688938802
+    "timestamp": 1688939899
   }
 }

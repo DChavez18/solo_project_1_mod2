@@ -122,17 +122,17 @@ RSpec.describe "show team attributes" do
       
       it "when changes are made and submit is clicked user is redirected to team_show page to view updated changes" do
         team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
-
+        
         visit "teams/#{team_1.id}/edit"
-
+        
         fill_in "team_name", with: "Mahomies"
         fill_in "team_city", with: "KC"
         fill_in "team_rank", with: 3
         check "team_stadium"
-
+        
         click_button "team_submit"
-
-
+        
+        
         expect(page).to have_current_path("/teams/#{team_1.id}")
         expect(page).to have_content("Mahomies")
         expect(page).to have_content("KC")
@@ -140,7 +140,7 @@ RSpec.describe "show team attributes" do
       end
     end
   end
-
+  
   #[ ] done
   # User Story 13, Parent Child Creation 
   # As a visitor
@@ -155,14 +155,21 @@ RSpec.describe "show team attributes" do
   # a new child object/row is created for that parent,
   # and I am redirected to the Parent Childs Index page 
   # where I can see the new child listed
-
+  
   describe "when i visit the team player index" do
     describe "create player button" do
       it "displays a link that adds a new player to that team"do
         team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
-
+      
         visit "/teams/#{team_1.id}/players"
         expect(page).to have_link("Create Player", href: "/teams/#{team_1.id}/players")
+      end
+    
+      it "when the link is clicked, you a redirected to a form page" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+
+        visit "teams/#{team_1.id}/players/new"
+        expect(page).to have_selector("form#new_player")
       end
     end
   end
