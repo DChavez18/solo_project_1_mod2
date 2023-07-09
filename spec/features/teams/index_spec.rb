@@ -94,7 +94,33 @@ RSpec.describe "team show page" do
         expect(page).to have_link("Team Index", href: "/teams")
       end
     end
-      
+  end
 
+#[ ] done
+
+# User Story 11, Parent Creation 
+
+# As a visitor
+# When I visit the Parent Index page
+# Then I see a link to create a new Parent record, "New Parent"
+# When I click this link
+# Then I am taken to '/parents/new' 
+# where I  see a form for a new parent record
+# When I fill out the form with a new parent's attributes:
+# And I click the button "Create Parent" to submit the form
+# Then a `POST` request is sent to the '/parents' route,
+# a new parent record is created,
+# and I am redirected to the Parent Index page,
+#  where I see the new Parent displayed.
+
+  describe "when I visit the Team Index Page" do
+    describe "New Team button" do
+      it "displays a link to create a new Team record" do
+
+        visit "/teams"
+        expect(page).to have_link("New Team", href: "/teams/new")
+      end
+    end
   end
 end
+      
