@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   post "/teams/:team_id/players", to: "players#create", as: "team_players_create"
   get "/teams/:id/players/new", to: "players#new", as: "new_team_player"
   post "teams/:id/players/new", to: "players#create", as: "create_team_player"
+  get "players/:id/edit", to: "players#edit", as: "edit_player"
   patch "/players/:id", to: "players#update", as: "update_player"
-  get "players/:id/edit", to: "players#edit"
-
-  get "/players", to: "players#index"
+  
   get "players/:id", to: "players#show"
+  get "/players", to: "players#index"
 end

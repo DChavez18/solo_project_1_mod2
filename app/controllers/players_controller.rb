@@ -33,4 +33,15 @@ class PlayersController < ApplicationController
   def edit
     @player = Player.find(params[:id])
   end
+
+  def update
+    player = Player.find(params[:id])
+    player.update({
+      name: params[:player][:name],
+      drafted: params[:player][:drafted],
+      jersey_num: params[:player][:jersey_num],
+    })
+
+    redirect_to "/players/#{player.id}"
+  end
 end

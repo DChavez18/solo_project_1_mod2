@@ -44,7 +44,7 @@ RSpec.describe "players show page" do
         player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
         visit "/players/#{player_1.id}"
         
-        expect(page).to have_link("Update Player", href: "/players/#{player_1.id}")
+        expect(page).to have_link("Update Player", href: edit_player_path(player_1))
       end
       
       it "takes me to a form to edit thge player" do
@@ -53,6 +53,24 @@ RSpec.describe "players show page" do
         
         visit "/players/#{player_1.id}/edit"
         expect(page).to have_selector("form#update_player")
+      end
+      
+      it "updates and saves the player info and redirects you to the player show page" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+        player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+        
+        visit "players/#{player_1.id}/edit"
+  
+        fill_in "player_name", with: "Pat MCDonald"
+        check "player_drafted"
+        fill_in "player_jersey", with: 88
+        
+        click_button "player_submit"
+
+        expect(page).to have_current_path("/players/#{player_1.id}")
+
+        expect(page).to have_content("Pat MCDonald")
+        expect(page).to have_content(88)
       end
 
     end
