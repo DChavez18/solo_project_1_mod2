@@ -69,10 +69,29 @@ RSpec.describe "player index" do
       it "has a link to the player index" do
         team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
         player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
-
+        
         visit "/teams/#{team_1.id}/players"
         expect(page).to have_link("Player Index", href: "/players")
       end
     end
   end
+  # [ ] done
+  # User Story 15, Child Index only shows `true` Records 
+  # As a visitor
+  # When I visit the child index
+  # Then I only see records where the boolean column is `true`
+  
+  describe "when i visit the player index" do
+    it "only displays records where drafted column is true" do
+      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+      player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+      player_1 = Player.create!(name: "Matrick Pahomes", drafted: false, jersey_num: 18, team_id: 1)
+      
+      visit "/players"
+
+      expect(page).to have_content("Patrick Mahomes")
+      expect(page).not_to have_content("Matrick Pahomes")
+    end
+  end
 end
+
