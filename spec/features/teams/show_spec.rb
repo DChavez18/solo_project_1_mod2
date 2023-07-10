@@ -213,17 +213,32 @@ RSpec.describe "show team attributes" do
 # where I see all of the parent's children in alphabetical order
   describe "team show page" do
     describe "when i visit team players index page" do
-      it "has a link that sorts the players in alphabetical order by name" do
-        team_2 = Team.create!(name: "Eagles", city: "Philadelphia", rank: 2, stadium: true)
-        player_3 = team_2.players.create!(name: "Jalen Hurts", drafted: true, jersey_num: 1)
-        player_4 = team_2.players.create!(name: "AJ Brown", drafted: true, jersey_num: 11)
+      describe "sort by name link" do
+        it "has a link that sorts the players in alphabetical order by name" do
+          team_2 = Team.create!(name: "Eagles", city: "Philadelphia", rank: 2, stadium: true)
+          player_3 = team_2.players.create!(name: "Jalen Hurts", drafted: true, jersey_num: 1)
+          player_4 = team_2.players.create!(name: "AJ Brown", drafted: true, jersey_num: 11)
 
-        visit "/teams/#{team_2.id}/players"
+          visit "/teams/#{team_2.id}/players"
 
-        expect(page).to have_link("Sort By Name", href: "/teams/#{team_2.id}/players")
+          expect(page).to have_link("Sort By Name", href: team_players_path(team_2, sort_by: 'name'))
+        end
+
+        it "displays players in alphabetical order when the link is clicked" do
+          team_2 = Team.create!(name: "Eagles", city: "Philadelphia", rank: 2, stadium: true)
+          player_3 = team_2.players.create!(name: "Jalen Hurts", drafted: true, jersey_num: 1)
+          player_4 = team_2.players.create!(name: "AJ Brown", drafted: true, jersey_num: 11)
+
+          visit "/teams/#{team_2.id}/players"
+
+          click_link "Sort By Name"
+
+          sorted_players = [player_4, player_3]
+
+          expect(page).to have_content(sorted_players[0].name)
+        end
       end
     end
   end
-
 end
   

@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
 
   def show_players
     @team = Team.find(params[:id])
-    @players = @team.players
+    @players = @team.players.order(:name)
   end
 
   def new

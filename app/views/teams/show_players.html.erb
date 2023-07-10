@@ -2,7 +2,7 @@
 <a href="/players">Player Index</a>
 
 <h1>All Players</h1>
-<%= button_to "Sort By Name", players_path(sort_by: 'name') %>
+<%= link_to "Sort By Name", team_players_path(@team, sort_by: 'name') %>
 <% @players.each do |player| %>
   <h3><a href="/players/<%= player.id %>"><%= player.name %></a></h3>
   <p> Drafted: <%= player.drafted %></p>

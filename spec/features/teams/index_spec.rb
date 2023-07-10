@@ -161,5 +161,24 @@ RSpec.describe "team index page" do
       end
     end
   end
+
+# [ ] done
+# User Story 17, Parent Update From Parent Index Page 
+# As a visitor
+# When I visit the parent index page
+# Next to every parent, I see a link to edit that parent's info
+# When I click the link
+# I should be taken to that parent's edit page 
+# where I can update its information just like in User Story 12
+
+  describe "when i visit team index page" do
+    describe "edit info link" do
+      it "displays an edit link next to every team" do
+        visit "/teams"
+
+        expect(page).to have_link("Edit")
+      end
+    end
+  end
 end
       
