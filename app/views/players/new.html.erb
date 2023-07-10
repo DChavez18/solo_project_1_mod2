@@ -1,5 +1,6 @@
 <form id= "new_player" action="/teams/:id/players/new" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="team_id" value="<%= @team.id %>">
   <p>Create Player:</p>
   <label for="player_name">Player Name:</label>
   <input type='text' id="player_name" name='player[name]'/><br/>

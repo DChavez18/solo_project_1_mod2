@@ -1,0 +1,12 @@
+<form id="update_player" action="/players/<%= @player.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Update Player:</p>
+  <label for="player_name">Player Name:</label>
+  <input type="text" id="player_name" name="player[name]" value="<%= @player.name %>"><br>
+  <label for="player_drafted">Drafted:</label>
+  <input type="checkbox" id="player_drafted" name="player[drafted]" value="<%= @player.drafted %>"><br>
+  <label for="player_jersey">Jersey Num:</label>
+  <input type="text" id="player_jersey" name="player[jersey]" value="<%= @player.jersey_num %>"><br>
+  <input type="submit" id="player_submit" value="Update Player">
+</form>

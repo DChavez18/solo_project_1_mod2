@@ -165,11 +165,40 @@ RSpec.describe "show team attributes" do
         expect(page).to have_link("Create Player", href: "/teams/#{team_1.id}/players/new")
       end
     
-      it "when the link is clicked, you a redirected to a form page" do
+      it "redirects user to form page when create player button is clicked" do
         team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
-
+        
         visit "teams/#{team_1.id}/players/new"
         expect(page).to have_selector("form#new_player")
+      end
+      
+      it "creates new player when form is filled out and submit is clicked and user is redirected to teams show player page" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+        visit "teams/#{team_1.id}/players/new"
+
+        fill_in "player_name", with: "Chris Jones"
+        check "player_drafted"
+        fill_in "player_jersey", with: 95
+      
+        click_button "player_submit"
+
+        expect(page).to have_current_path("/teams/#{team_1.id}/players")
+      end
+
+      it "displays new player" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true)
+        visit "teams/#{team_1.id}/players/new"
+
+        fill_in "player_name", with: "Chris Jones"
+        check "player_drafted"
+        fill_in "player_jersey", with: 95
+      
+        click_button "player_submit"
+
+        new_player = Player.find_by(name: "Chris Jones")
+        
+        expect(new_player).to_not be_nil
+        expect(page).to have_content("Chris Jones")
       end
     end
   end

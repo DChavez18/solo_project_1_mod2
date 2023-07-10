@@ -30,7 +30,7 @@ RSpec.describe "player index" do
 # Then I see a link at the top of the page that takes me to the Child Index
 
   describe "When I visit any page on the site" do
-    describe "team page"do
+    describe "team page" do
       it "has a link that connects to the players index" do
 
         visit "/teams"
@@ -75,26 +75,4 @@ RSpec.describe "player index" do
       end
     end
   end
-
-[ ] done
-
-User Story 11, Parent Creation 
-
-As a visitor
-When I visit the Parent Index page
-Then I see a link to create a new Parent record, "New Parent"
-When I click this link
-Then I am taken to '/parents/new' 
-where I  see a form for a new parent record
-When I fill out the form with a new parent's attributes:
-And I click the button "Create Parent" to submit the form
-Then a `POST` request is sent to the '/parents' route,
-a new parent record is created,
-and I am redirected to the Parent Index page,
- where I see the new Parent displayed.
-
-  describe "when I visit the Team Index Page" do
-    it "displays a link to create a new Team record, the button will be called 'New Team'" do
-      visit
-
 end
