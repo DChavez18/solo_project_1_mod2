@@ -174,9 +174,19 @@ RSpec.describe "team index page" do
   describe "when i visit team index page" do
     describe "edit info link" do
       it "displays an edit link next to every team" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+        visit "/teams"
+        
+        expect(page).to have_link("Edit", href: "/teams/#{team_1.id}/edit")
+      end
+      
+      it "takes me to the team edit page" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
         visit "/teams"
 
-        expect(page).to have_link("Edit")
+        click_link "Edit"
+
+        expect(current_path).to eq(edit_team_path(team_1))        
       end
     end
   end

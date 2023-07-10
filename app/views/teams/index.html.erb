@@ -3,8 +3,8 @@
 
 <% @teams.each do |team| %>
   <h3><a href="/teams/<%= team.id %>"><%= team.name %></a></h3>
+  <%= link_to "Edit", edit_team_path(team) %>
   <p> CreatedAt: <%= team.created_at %></p>
-
 
 <% end %>
 
