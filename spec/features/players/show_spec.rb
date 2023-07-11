@@ -72,7 +72,43 @@ RSpec.describe "players show page" do
         expect(page).to have_content("Pat MCDonald")
         expect(page).to have_content(88)
       end
+    end
+  end
+
+  # [ ] done
+  # User Story 20, Child Delete 
+  # As a visitor
+  # When I visit a child show page
+  # Then I see a link to delete the child "Delete Child"
+  # When I click the link
+  # Then a 'DELETE' request is sent to '/child_table_name/:id',
+  # the child is deleted,
+  # and I am redirected to the child index page where I no longer see this child
+
+  describe "player show page" do
+    describe "delete player link" do
+      it "displays a button called 'Delete Player'" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+        player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+        
+        visit "/players/#{player_1.id}"
+        
+        expect(page).to have_button("Delete Player")
+      end
+      
+      it "redirects you to the player index page when clicked and deletes the player in the process" do
+        team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+        player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+        
+        visit "/players/#{player_1.id}"
+
+        click_button "Delete Player"
+
+        expect(current_path).to eq("/players")
+        expect(page).to_not have_content("Patrick Mahomes")
+      end
 
     end
   end
+
 end

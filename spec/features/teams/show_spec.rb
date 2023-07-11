@@ -271,6 +271,7 @@ RSpec.describe "show team attributes" do
         click_button "Delete Team"
 
         expect(current_path).to eq("/teams")
+        expect(page).to_not have_content("Eagles")
       end
     end
   end
