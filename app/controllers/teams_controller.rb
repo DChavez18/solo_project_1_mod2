@@ -5,6 +5,7 @@ class TeamsController < ApplicationController
 
   def show
     @teams = Team.find(params[:id])
+    @team = @teams
   end
 
   def show_players
@@ -42,5 +43,11 @@ class TeamsController < ApplicationController
     })
 
     redirect_to "/teams/#{team.id}"
+  end
+
+  def destroy
+    @team = Team.find_by(id: params[:id])
+    @team.destroy if @team
+    redirect_to '/teams'
   end
 end

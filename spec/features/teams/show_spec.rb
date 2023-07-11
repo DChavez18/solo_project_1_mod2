@@ -228,15 +228,49 @@ RSpec.describe "show team attributes" do
           team_2 = Team.create!(name: "Eagles", city: "Philadelphia", rank: 2, stadium: true)
           player_3 = team_2.players.create!(name: "Jalen Hurts", drafted: true, jersey_num: 1)
           player_4 = team_2.players.create!(name: "AJ Brown", drafted: true, jersey_num: 11)
-
+          
           visit "/teams/#{team_2.id}/players"
-
+          
           click_link "Sort By Name"
-
+          
           sorted_players = [player_4, player_3]
-
+          
           expect(page).to have_content(sorted_players[0].name)
         end
+      end
+    end
+  end
+  
+  #[ ] done
+  # User Story 19, Parent Delete 
+  # As a visitor
+  # When I visit a parent show page
+  # Then I see a link to delete the parent
+  # When I click the link "Delete Parent"
+  # Then a 'DELETE' request is sent to '/parents/:id',
+  # the parent is deleted, and all child records are deleted
+  # and I am redirected to the parent index page 
+  # where I no longer see this parent
+  
+  describe "team show page" do
+    describe "delete link" do
+      it "displays a link called 'Delete Team'" do
+        team_2 = Team.create!(name: "Eagles", city: "Philadelphia", rank: 2, stadium: true)
+        
+        visit "/teams/#{team_2.id}"
+        
+        expect(page).to have_selector("form[action='#{team_delete_path(team_2)}'][method='post']")
+        expect(page).to have_button("Delete Team")
+      end
+      
+      it "deletes the team record when the link is clicked, and redirects user to team index" do
+        team_2 = Team.create!(name: "Eagles", city: "Philadelphia", rank: 2, stadium: true)
+        
+        visit "/teams/#{team_2.id}"
+
+        click_button "Delete Team"
+
+        expect(current_path).to eq("/teams")
       end
     end
   end

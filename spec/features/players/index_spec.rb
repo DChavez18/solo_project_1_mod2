@@ -88,9 +88,61 @@ RSpec.describe "player index" do
       player_1 = Player.create!(name: "Matrick Pahomes", drafted: false, jersey_num: 18, team_id: 1)
       
       visit "/players"
-
+      
       expect(page).to have_content("Patrick Mahomes")
       expect(page).not_to have_content("Matrick Pahomes")
+    end
+  end
+  
+  #[ ] done
+  # User Story 18, Child Update From Childs Index Page 
+  # As a visitor
+  # When I visit the `child_table_name` index page 
+  # or a parent `child_table_name` index page
+  # Next to every child, I see a link to edit that child's info
+  # When I click the link
+  # I should be taken to that `child_table_name` edit page 
+  # where I can update its information just like in User Story 14
+  
+  describe "when I visit the player index" do
+    it " has an edit link next to every player" do
+      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+      player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+      
+      visit "/players"
+      
+      expect(page).to have_link("Edit", href: "/players/#{player_1.id}/edit")
+    end
+    
+    it "takes me to the player edit page" do
+      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+      player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+
+      visit "/players"
+
+      click_link "Edit"
+
+      expect(current_path).to eq(edit_player_path(player_1))  
+    end
+
+    it "updates the player info when new info is filled in" do
+      team_1 = Team.create!(name: "Chiefs", city: "Kansas City", rank: 1, stadium: true, id: 1)
+      player_1 = Player.create!(name: "Patrick Mahomes", drafted: true, jersey_num: 15, team_id: 1)
+
+      visit "/players"
+
+      click_link "Edit"
+
+      fill_in "player_name", with: "Pat MCDonald"
+      check "player_drafted"
+      fill_in "player_jersey", with: 88
+
+      click_button "player_submit"
+
+      expect(current_path).to eq(update_player_path(player_1))
+      expect(page).to have_content("Pat MCDonald")
+      expect(page).to have_content("true")
+      expect(page).to have_content(88)
     end
   end
 end

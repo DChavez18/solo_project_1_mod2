@@ -5,6 +5,10 @@
 <h2><%= @teams.name %></h2>
 <a href="<%= edit_team_path(@teams) %>">Update Team</a>
 <a href="<%= team_players_path(@teams) %>">Team Players</a>
+<%= form_with(model: @team, url: team_delete_path(@team), method: :delete) do |form| %>
+  <%= form.submit "Delete Team" %>
+<% end %>
+
 <p> PlayerCount: <%= @teams.players.count %></p>
 <p> ID: <%= @teams.id %></p>
 
