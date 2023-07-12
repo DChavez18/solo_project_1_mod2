@@ -155,8 +155,6 @@ RSpec.describe "team index page" do
         new_team = Team.find_by(name: "Broncos")
         expect(new_team).to_not be_nil
       
-        visit "/teams"
-      
         expect(page).to have_link("Broncos", href: "/teams/#{new_team.id}")
       end
     end
